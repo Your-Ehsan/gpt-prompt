@@ -1,14 +1,23 @@
 "use client";
-import { signOut } from "next-auth/react";
+import { getProviders, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Nav = () => {
   const UserLogedIn = true,
-    [Provider, setProvider] = useState(null);
-  useEffect()
-    return (
+    [Provider, setProvider] = useState(null),
+    [Dropdown, setDropdown] = useState(false);
+
+  useEffect(() => {
+    const Authprovider = async () => {
+      const response = await getProviders();
+      setProvider(response);
+    };
+    return () => Authprovider();
+  }, []);
+
+  return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href={"/"}>
         <Image
@@ -34,14 +43,85 @@ const Nav = () => {
             <Image
               src={"/assets/images/logo.svg"}
               alt="this is alt text"
-              width={37}
-              height={37}
+              width={26}
+              height={26}
             />
           </Link>
         </div>
       ) : (
-        <div></div>
+        <div>
+          {Provider &&
+            Object.values(Provider).map((_provider) => {
+              <button
+                type="button"
+                onClick={() => signIn(_provider.id)}
+                key={_provider.name}
+                className="black_btn"
+              >
+                sign in
+              </button>;
+            })}
+        </div>
       )}
+      {/* mobile navigation */}
+      <div className="sm:hidden flex relative">
+        {UserLogedIn ? (
+          <div className="flex">
+            <Image
+              alt="image alt txt "
+              src={"/assets/images/logo.svg"}
+              onClick={() => {
+                setDropdown((prevState) => !prevState);
+              }}
+              width={20}
+              height={20}
+            />
+            {Dropdown && (
+              <div>
+                <div className="dropdown">
+                  <Link
+                    onClick={() => setDropdown(false)}
+                    className="dropdown_link"
+                    href={"/profile"}
+                  >
+                    profile
+                  </Link>
+                </div>
+                <div className="dropdown">
+                  <Link
+                    onClick={() => setDropdown(false)}
+                    className="dropdown_link"
+                    href={"/create-prompt"}
+                  >
+                    Create Prompt
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setDropdown(false);
+                      signOut();
+                    }}
+                  >Sign out</button>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div>
+            {Provider &&
+              Object.values(Provider).map((_provider) => {
+                <button
+                  type="button"
+                  onClick={() => signIn(_provider.id)}
+                  key={_provider.name}
+                  className="black_btn"
+                >
+                  sign in
+                </button>;
+              })}
+          </div>
+        )}
+      </div>
     </nav>
   );
 };

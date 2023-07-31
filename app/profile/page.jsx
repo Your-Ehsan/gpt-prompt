@@ -8,7 +8,28 @@ import { useEffect, useState } from "react";
 const UserProfile = () => {
   const router = useRouter(),
     { data: session } = useSession(),
-    [UserPosts, setUserPosts] = useState([]);
+    [UserPosts, setUserPosts] = useState([]),
+    handleDelete = async ({ _id }) => {
+      const confirmed = confirm("Are you sure you want to delete this prompt");
+
+      if (confirmed) {
+        try {
+          const response = await fetch(`/api/prompt/${_id}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            alert(data);
+            setUserPosts((prePosts) => {
+              prePosts.filter((_post) => _post._id !== _id);
+            });
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
 
   useEffect(() => {
     (async () => {
@@ -31,29 +52,7 @@ const UserProfile = () => {
         name=""
         desc=""
         data={UserPosts}
-        handleDelete={async ({ _id }) => {
-          const confirmed = confirm(
-            "Are you sure you want to delete this prompt",
-          );
-
-          if (confirmed) {
-            try {
-              const response = await fetch(`/api/prompt/${_id}`, {
-                method: "DELETE",
-              });
-
-              if (response.ok) {
-                const data = await response.json();
-                alert(data);
-                setUserPosts((prePosts) => {
-                  prePosts.filter((_post) => _post._id !== _id);
-                });
-              }
-            } catch (error) {
-              console.error(error);
-            }
-          }
-        }}
+        handleDelete={async () => await handleDelete()}
         handleEdit={({ _id }) => {
           router.push(`/update-prompt?id=${_id}`);
         }}

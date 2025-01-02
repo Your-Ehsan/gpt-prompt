@@ -5,8 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Nav = () => {
-  const UserLogedIn = true,
-    { data: session } = useSession(),
+  const { data: session } = useSession(),
     [Provider, setProvider] = useState(null),
     [Dropdown, setDropdown] = useState(false);
 
@@ -16,8 +15,7 @@ const Nav = () => {
       setProvider(response);
     })();
   }, []);
-  // console.log(async () => await getProviders());
-  // console.log(Provider);
+
   return (
     <nav className="w-full pt-3 mb-16 flex-between">
       <Link href="/" className="flex gap-2 flex-center">
@@ -28,7 +26,7 @@ const Nav = () => {
           height={30}
           className="object-contain"
         />
-        <p className="logo_text">Promptopia</p>
+        <p className="logo_text">Promptly</p>
       </Link>
 
       {/* Desktop Navigation */}

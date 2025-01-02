@@ -1,34 +1,101 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#Promptly: Social Prompts Management Application
 
-## Getting Started
+A Next.js application for managing and sharing prompts. Users can sign in via Google, create, edit, and delete their prompts. All prompts are public, enabling both authenticated and non-authenticated users to view them and their associated user details.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Environment Variables](#environment-variables)
+- [Setup Locally](#setup-locally)
+- [Usage](#usage)
+
+---
+
+## Features
+
+- **Google Authentication**: Users can sign in using Google.
+- **Prompt Management**: Create, edit, and delete prompts.
+- **Public Access**: All prompts and user details are visible to everyone, including non-authenticated users.
+- **Secure User Authentication**: Managed using `auth.js`.
+- **Custom UI**: A unique user interface built without third-party libraries.
+
+---
+
+## Tech Stack
+
+- **Frontend & Backend**: Next.js
+- **Database**: MongoDB
+- **Authentication**: `auth.js`
+- **UI**: Fully custom implementation
+
+---
+
+## Environment Variables
+
+To run this application, configure the following environment variables in a `.env` file at the root of your project:
+
+```env
+GOOGLE_CLIENT_ID="<your-google-client-id>"
+GOOGLE_CLIENT_SECRET="<your-google-client-secret>"
+MONGODB_URI="mongodb://localhost:27017"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Setup Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Follow these steps to set up the application on your local machine:
 
-## Learn More
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Configure Environment Variables**:
+   - Create a `.env` file in the root of your project.
+   - Add the required environment variables as specified above.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Run the Application**:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+5. **Access the Application**:
+   - Open your browser and navigate to `http://localhost:3000`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage
+
+1. **Sign In with Google**:
+   - Click the "Sign In" button and log in using your Google account.
+
+2. **Create a Prompt**:
+   - After signing in, click "New Prompt," enter the details, and save.
+
+3. **Edit or Delete Prompts**:
+   - Manage your prompts directly from the interface.
+
+4. **View Public Prompts**:
+   - Browse all prompts and associated user details, even without signing in.
+
+---
+
+### Additional Notes
+
+- Ensure MongoDB is running locally or update the `MONGODB_URI` in the `.env` file for remote usage.
+- Use a valid Google Client ID and Secret for authentication to function.
+- The application is built without any third-party UI libraries, ensuring complete customization.
+
+---
+
+Happy coding!
+

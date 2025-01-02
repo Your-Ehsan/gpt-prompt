@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import PromptCard from "./PromptCard";
 
 const Feed = () => {
-    const [SearchTag, setSearchTag] = useState(""),
-      [Posts, setPosts] = useState([]),
-      handleSearch = (e) => {
-        e.preventDefault();
-      };
+    // const [SearchTag, setSearchTag] = useState(""),
+      const [Posts, setPosts] = useState([])
+    //   handleSearch = (e) => {
+    //     e.preventDefault();
+    //   };
 
     useEffect(() => {
       (async () => {
@@ -31,8 +31,8 @@ const Feed = () => {
           <input
             type="text"
             placeholder="search for the tag"
-            value={SearchTag}
-            onChange={() => handleSearch()}
+            // value={SearchTag}
+            // onChange={(e) => handleSearch(e)}
             required
             className="search_input peer"
           />

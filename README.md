@@ -1,4 +1,4 @@
-#Promptly: Social Prompts Management Application
+# Promptly: Social Prompts Management Application
 
 A Next.js application for managing and sharing prompts. Users can sign in via Google, create, edit, and delete their prompts. All prompts are public, enabling both authenticated and non-authenticated users to view them and their associated user details.
 

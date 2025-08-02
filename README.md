@@ -5,6 +5,7 @@ A Next.js application for managing and sharing prompts. Users can sign in via Go
 ---
 
 ## Table of Contents
+
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Environment Variables](#environment-variables)
@@ -49,21 +50,25 @@ MONGODB_URI="mongodb://localhost:27017"
 Follow these steps to set up the application on your local machine:
 
 1. **Clone the Repository**:
+
    ```bash
    git clone <repository-url>
    cd <repository-folder>
    ```
 
 2. **Install Dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Configure Environment Variables**:
+
    - Create a `.env` file in the root of your project.
    - Add the required environment variables as specified above.
 
 4. **Run the Application**:
+
    ```bash
    npm run dev
    ```
@@ -73,15 +78,36 @@ Follow these steps to set up the application on your local machine:
 
 ---
 
+### Setup mongo locally using Docker
+
+```bash
+docker run -d -p 27017:27017 --name=mongo-gpt-prompt mongo:latest
+```
+
+Then on the `.env` file you can use this as your mongoDB URI `mongodb://localhost:27017`
+
+---
+
+### How to get Client ID and client secret
+
+Well to get client id and client secret you need to go to console.cloud.google select any of your project then go to the clients section from the sidebar here you can see your project's `client Id` and `client secret` these keys will be used to authenticate using google account.
+
+So, That's will be good if you keep it secret
+
+---
+
 ## Usage
 
 1. **Sign In with Google**:
+
    - Click the "Sign In" button and log in using your Google account.
 
 2. **Create a Prompt**:
+
    - After signing in, click "New Prompt," enter the details, and save.
 
 3. **Edit or Delete Prompts**:
+
    - Manage your prompts directly from the interface.
 
 4. **View Public Prompts**:
@@ -98,4 +124,3 @@ Follow these steps to set up the application on your local machine:
 ---
 
 Happy coding!
-

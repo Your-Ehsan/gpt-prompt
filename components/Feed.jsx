@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import PromptCard from "./PromptCard";
+import { dummyPrompts } from "@data/prompts";
 
 const Feed = () => {
     // const [SearchTag, setSearchTag] = useState(""),
@@ -45,7 +46,7 @@ const Feed = () => {
   PromptCardList = ({ data, handleTagClick }) => {
     return (
       <div className="mt-16 prompt_layout">
-        {data.map((post) => {
+        {[...dummyPrompts,...data].map((post) => {
           return (
             <PromptCard
               key={post._id}
